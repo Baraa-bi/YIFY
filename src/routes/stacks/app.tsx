@@ -16,8 +16,8 @@ export const AppNavigator = () => {
         headerStyle: {backgroundColor: COLORS.black},
       }}>
       <AppStack.Screen
-        name={SCREENS.MOVIES}
         component={Movies}
+        name={SCREENS.MOVIES}
         options={{title: 'YIFY Movies'}}
       />
       <AppStack.Screen
