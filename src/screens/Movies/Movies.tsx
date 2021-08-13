@@ -9,13 +9,18 @@ import styles from './styles';
 import _ from 'lodash';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useCallback} from 'react';
+import {useMemo} from 'react';
 const Movies = ({navigation}) => {
   const dispatch = useDispatch();
   const {moviesList} = useSelector((store: any) => store.movies);
 
+  const movies = useMemo(() => {
+    return _.map(moviesList);
+  }, [moviesList]);
+
   useEffect(() => {
-    // get the list of movies
     StatusBar.setBarStyle('light-content');
+    // get the list of movies
     dispatch(getMoviesList({limit: 50}));
   }, []);
 
@@ -34,9 +39,9 @@ const Movies = ({navigation}) => {
     <View style={styles.container}>
       <FlatList
         numColumns={3}
-        data={_.map(moviesList)}
+        data={movies}
+        extraData={[movies]}
         renderItem={renderMovie}
-        extraData={[moviesList]}
         keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}
       />

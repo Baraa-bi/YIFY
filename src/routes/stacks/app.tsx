@@ -16,16 +16,14 @@ export const AppNavigator = () => {
         headerStyle: {backgroundColor: COLORS.black},
       }}>
       <AppStack.Screen
-        options={{
-          title: 'YIFY Movies',
-        }}
         name={SCREENS.MOVIES}
         component={Movies}
+        options={{title: 'YIFY Movies'}}
       />
       <AppStack.Screen
-        options={({route}: any) => ({title: route.params.movie.title})}
-        name={SCREENS.MOVIE_DETAILS}
         component={MovieDetails}
+        name={SCREENS.MOVIE_DETAILS}
+        options={({route}: any) => ({title: route.params.movie.title})}
       />
     </AppStack.Navigator>
   );
